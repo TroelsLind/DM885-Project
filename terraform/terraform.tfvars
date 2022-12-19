@@ -1,2 +1,2 @@
-project_id = "solveit-369711"
-region     = "europe-west4"
+project_id = "testdev-372012"
+region = "europe-west4"

@@ -1,14 +1,5 @@
 
 
-resource "google_artifact_registry_repository" "services-repository" {
-  project       = var.project_id
-  location      = var.region
-  repository_id = "services-repository"
-  description   = "Repository for service images"
-  format        = "DOCKER"
-  provider      = google-beta
-}
-
 resource "google_container_registry" "registry" {
   project       = var.project_id
   location      = "EU"

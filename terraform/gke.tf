@@ -13,6 +13,8 @@ variable "gke_num_nodes" {
   description = "number of gke nodes"
 }
 
+
+
 # GKE cluster
 resource "google_container_cluster" "primary" {
   name     = "${var.project_id}-gke"
@@ -23,6 +25,10 @@ resource "google_container_cluster" "primary" {
   # node pool and immediately delete it.
   remove_default_node_pool = true
   initial_node_count       = 1
+
+  node_config {
+    disk_size_gb = 50
+  }
 
   #Autopilot:
   #ip_allocation_policy {}  #Needed to fix terraform bug #10782
@@ -49,6 +55,9 @@ resource "google_container_node_pool" "primary_nodes" {
     labels = {
       env = var.project_id
     }
+
+    disk_size_gb = 50
+
 
     # preemptible  = true
     machine_type = "n1-standard-1"
