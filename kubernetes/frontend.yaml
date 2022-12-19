@@ -10,3 +10,26 @@ spec:
     - protocol: "TCP"
       port: 80
       targetPort: 80
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend-deployment
+  labels:
+    app: frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: frontend
+  template:
+    metadata:
+      labels:
+        app: frontend
+    spec:
+      containers:
+      - name: frontend
+        image: eu.gcr.io/${PROJECT_ID}/frontend:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 80
